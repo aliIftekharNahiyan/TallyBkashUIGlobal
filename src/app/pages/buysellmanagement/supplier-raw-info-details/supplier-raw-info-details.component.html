@@ -1,0 +1,155 @@
+
+<div class="container-fluid">
+  <app-pagetitle [breadcrumbItems]="breadCrumbItems" style="display: none;"></app-pagetitle>
+  <div style="text-align: left;">
+    <a routerLink="/">
+
+          <i class="fas fa-home" style="font-size: x-large;"></i>    
+    </a>        
+
+ </div>
+  <h4 class="text-center">সরবরাহকারী তথ্য  বিস্তারিত </h4>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-md-2 col-sm-12">
+              <div class="form-group row">
+                <div class="input-group clockpicker">
+                  <input ngbDatepicker class="form-control" placeholder="yyyy-mm-dd" #d="ngbDatepicker"
+                    [(ngModel)]="datestart" name="date" [ngModelOptions]="{standalone: true}">
+                  <div class="input-group-append" (click)="d.toggle()">
+                    <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1 col-sm-12"><label for="nameField" class="row  justify-content-center">তারিখ হইতে </label></div>
+            <div class="col-md-2 col-sm-12">
+              <div class="from-group row">
+                <div class="input-group clockpicker">
+                  <input ngbDatepicker class="form-control " placeholder="yyyy-mm-dd" #d1="ngbDatepicker"
+                    [(ngModel)]="dateend" name="date" [ngModelOptions]="{standalone: true}">
+                  <div class="input-group-append" (click)="d1.toggle()">
+                    <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <br>
+
+
+          <div class="row">
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label for="nameField" class="col-xs-3"> সরবরাহকারী  তথ্য : {{sn}}</label>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label for="nameField" class="col-xs-3">হিসাব শুরু তারিখ: {{hsd |date : 'yyyy-MM-dd'}}</label>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label for="nameField" class="col-xs-3">হিসাব শুরু টাকা: {{hsa}}</label>
+              </div>
+            </div>
+            <br />
+
+          </div>
+          <div class="row">
+
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label for="nameField" class="col-xs-3">পূর্বের ব্যালান্স(টাকা): {{pb}}</label>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-xs-6">
+              <div class="form-group">
+                <button class="btn btn-primary" (click)='loadValues()'>অনুসন্ধান </button>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <br />
+          <br />
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="অনুসন্ধান করুন " (keyup)="applyFilter($event.target.value)">
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+          </div>
+          <div class="table-responsive table-striped">
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+              <ng-container matColumnDef="Id">
+                <th class="w-th w-td" mat-header-cell *matHeaderCellDef> ডিলিট </th>
+                <td mat-cell *matCellDef="let element" (click)="Editdelete(element.Id,-1)">
+                  <i class="ri-delete-bin-line"></i>
+              </ng-container>
+
+
+
+              <ng-container matColumnDef="Status">
+                <th class="w-th w-td" mat-header-cell *matHeaderCellDef> এডিট </th>
+                <td mat-cell *matCellDef="let element" (click)="Editdelete(element.Id,1)">
+                  <i class="dripicons-document-edit"></i>
+              </ng-container>
+
+              <ng-container matColumnDef="{{column.name}}" *ngFor="let column of definedColumns">
+                <th class="w-th w-td" mat-header-cell *matHeaderCellDef mat-sort-header> {{column.bn}} </th>
+                <td mat-cell *matCellDef="let element">
+                  <!-- {{element[column.name]  | date:'yyyy-MM-dd'}}  -->
+                  {{column.name === 'EntryDate' ? (element[column.name] | date:'dd/MM/yyyy') : element[column.name] }}
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
+              <tr mat-row *matRowDef="let row; let i = dataIndex; columns: displayedColumns"
+                [ngClass]="{'alt-row': i % 2}"></tr>
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</div>

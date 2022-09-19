@@ -1,0 +1,180 @@
+
+<div class="container-fluid">
+    <app-pagetitle  [breadcrumbItems]="breadCrumbItems" style="display: none;"></app-pagetitle>
+    <div style="text-align: left;">
+        <a routerLink="/">
+    
+              <i class="fas fa-home" style="font-size: x-large;"></i>    
+        </a>        
+    
+     </div>
+    <h4 class="text-center">কর্মচারী তালিকা তৈরি করুন</h4>
+   
+
+    <div class="row">
+    
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">   
+                    <div class="row g-3 text-center">
+                        <div class="col-md-4 mt-1">
+                            <input type="button" class="btn btn-primary" style="min-width: 250px;" value="কর্মচারীর সংখ্যা 10 টি ">
+                          </div>
+                          <div class="col-md-4 mt-1">
+                            <input type="button" style="min-width: 250px;" class="btn btn-danger" value="সাময়িক নিষ্ক্রিয় কর্মী 10 টি ">
+                          </div>
+
+                          <div class="col-md-4 mt-1">
+                            <input type="button" class="btn btn-success" style="min-width: 250px;" value="সর্ব মোট বেতন পরিশোধ: ০.০০ টাকা ">
+                          </div>
+                    </div>  
+                    
+                    
+
+                    
+                    <br/>
+
+                    <form (ngSubmit)="onSubmit()" [formGroup]="typeValidationForm" #formGroupRef="ngForm">
+
+
+                        <div class="form-group">
+                            <label>কর্মচারীর  নামঃ</label>
+                            <input type="text" class="form-control" formControlName="kormochariName"
+                                [ngClass]="{ 'is-invalid': submitted && f.kormochariName.errors }" name="kormochariName"
+                                placeholder="কর্মচারীর নাম লিখুন" id="kormochariName" [(ngModel)]="kormochariName" />
+
+                            <div *ngIf="submitted && f.kormochariName.errors" class="invalid-feedback">
+                                <div *ngIf="f.kormochariName.errors.required">কর্মচারীর নাম লিখুন</div>
+                              </div>
+
+                        </div>
+                      
+
+                        
+                        <div class="form-group auth-form-group">
+                            <label for="mobileNumber">কর্মচারীর মোবাইল নাম্বারঃ</label>
+                            <input type="text" (keypress)="numberOnly($event)" class="form-control" formControlName="mobileNumber"
+                                [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }"
+                                placeholder="মোবাইল নাম্বার লিখুন" id="mobileNumber" [(ngModel)]="mobileNumber" />
+                            <div *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+                                <div *ngIf="f.mobileNumber.errors.required">কর্মচারীর মোবাইল নাম্বার লিখুন</div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>জাতীয় পরিচয়পত্র:</label>
+                            <input type="text" class="form-control" formControlName="nid"
+                                [ngClass]="{ 'is-invalid': submitted && f.nid.errors }"
+                                placeholder="জাতীয় পরিচয়পত্র লিখুন" id="nid" [(ngModel)]="nid" />
+                            <div *ngIf="submitted && f.nid.errors" class="invalid-feedback">
+                                <div *ngIf="f.nid.errors.required">জাতীয় পরিচয়পত্র  লিখুন</div>
+                            </div>
+                        </div>
+                                 
+                        <div class="form-group">
+                            <label>কর্মচারীর ঠিকানাঃ</label>
+                            <input type="text" class="form-control" formControlName="address"
+                                [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
+                                placeholder="কর্মচারীর ঠিকানা লিখুন" id="address" [(ngModel)]="address" />
+                            <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                <div *ngIf="f.address.errors.required">কর্মচারীর ঠিকানা লিখুন</div>
+                            </div>
+                        </div> 
+
+                       
+                        <div class="form-group">
+                            <!-- <label for="file">File</label> -->
+
+                           
+
+
+
+                            <div class="panel-body text-center" style="padding: 0">
+                                <img id="imgCover" class="img-thumbnail" [src]='imgURL' style="height:150px;border-width:0px;">
+                                
+                            </div>
+
+
+                            <span class="btn btn-success btn-file btn-block" (click)="file.click()">
+                                <span id="cphMain_lblBrowse">দোকানের ছবি নির্বাচন করুন</span>
+                           
+
+                            </span>  
+                         
+                           
+                            <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                                <div *ngIf="f.file.errors.required">File is required.</div>
+                            </div>
+                            <input 
+                            formControlName="file"
+                            id="file" 
+                            type="file" 
+                            class="form-control btn btn-success"
+                            (change)="onFileChange($event)"
+                            #file
+                            style="display: none;"
+                            >
+                        </div>
+
+                      
+
+  <div class="form-group">
+   <label for="active">সক্রিয়</label>   
+   <label class="ml-3;" style="margin-left:10px">
+   <input type="checkbox" formControlName="active" id="active" [(ngModel)]="active" style="zoom:1;">
+   </label>
+
+     
+
+  </div>
+  
+
+                     
+                    </form>
+                    <!-- <div class="row  text-center">
+                        <div class="col-md-12">                               
+                            <button type="submit" class="btn btn-primary mr-2" (click)="onSubmit()">
+                                {{btnName}}
+                            </button>       
+                            <button type="submit" class="btn btn-primary mr-2" (click)="onAllList()">
+                                সকল কর্মচারীর তথ্য 
+                            </button>                         
+                        </div>                          
+                    </div> -->
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="row justify-content-between">
+                                <button type="submit" class="btn btn-block btn-primary  col-md-4" (click)="onSubmit()">
+                                    {{btnName}}
+                                </button>
+                                <button type="submit" class="btn btn-block btn-primary col-md-4"
+                                (click)="onAllList()">
+                                সকল কর্মচারীর তথ্য 
+                                </button>
+                                <!-- <button type="submit" class="btn btn-block btn-primary col-md-3"
+                                    (click)="onAllList('raw')">
+                                    বাকি ক্রয় ব্যবস্থাপনা
+                                </button> -->
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+     
+        </div>
+
+    </div>
+
+
+</div>

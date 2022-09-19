@@ -1,0 +1,387 @@
+<div class="container-fluid">
+    <app-pagetitle  [breadcrumbItems]="breadCrumbItems" style="display: none;"></app-pagetitle>
+    <div style="text-align: left;">
+        <a routerLink="/">
+
+              <i class="fas fa-home" style="font-size: x-large;"></i>    
+        </a>        
+
+     </div>
+    <h4 class="text-center">ক্রয় এন্ট্রি করুন</h4>
+
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+
+
+
+                    <div class="col-sm-6 col-md-4 col-xl-3" style="display:none">
+                        <div class="my-4 text-center">
+                          <p class="text-muted">Center modal</p>
+                          <!-- Center modal -->
+                          <button type="button" #cc id="cc" class="btn btn-primary" (click)="centerModal(centerDataModal)">Center
+                            modal</button>
+                        </div>
+                      </div>
+          
+
+
+
+                    <h5>একের অধিক পণ্য যোগ করতে + আইকনটিতে ক্লিক করুন</h5>
+                    <br/> 
+                    
+                    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group row">
+                                    <label for="nameField" class="col-4 col-xs-6">তারিখঃ </label>
+                                    <div class="input-group clockpicker col-6 col-xs-6">
+                                        <input ngbDatepicker class="form-control" placeholder="yyyy-mm-dd" #d="ngbDatepicker"
+                                       
+                                           [(ngModel)]="dates" name="date"   [ngModelOptions]="{standalone: true}">
+                                        <div class="input-group-append" (click)="d.toggle()">
+                                            <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                     
+                        <div class="table table-bordered table-responsive">
+                          
+                            <table formArrayName="quantities">
+
+                                <tr *ngFor="let quantity of quantities().controls; let i=index" [formGroupName]="i">
+                                    <td class="td">
+                                        পণ্যের বিবরণ :
+                                        <input type="text" formControlName="qty" class="form-control"                                           
+                                            placeholder="পণ্যের বিবরণ লিখুন ">
+
+                                    </td>
+                                    <td class="td">
+                                        টাকার পরিমান :
+                                        <input type="text" formControlName="price"                                           
+                                            class="form-control">
+
+                                    </td>
+                                    <td class="td">
+                                        <button (click)="removeQuantity(i)" class="btn btn-danger"
+                                            style="margin-top: 2%;"><i class="mdi mdi-close-thick"
+                                                style="font-size: large;"></i> </button>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="th">
+                                        <!-- <button type="button" (click)="addQuantity()" class="btn btn-primary"> <i
+                                                class="mdi mdi-account-plus" style="font-size: x-large;"></i> </button> -->
+                                            
+                                    </th>
+                                    <th class="th">
+                                        <button type="button" style="background-color: #a40b17;" (click)="addQuantity()" class="btn btn-primary"> <i
+                                            class="mdi mdi-account-plus" style="font-size: x-large;"></i> </button>
+                                    </th>
+                                    <th class="th">
+                                        <!-- <button type="button" (click)="addQuantity()" class="btn btn-primary"> <i
+                                            class="mdi mdi-account-plus" style="font-size: x-large;"></i> </button> -->
+                                    </th>
+
+                                </tr>
+
+                            </table>
+
+
+                        </div>
+                        <div class="row">
+                            <!-- <div class="col-12">
+                                <div class="form-group row">
+                                    <label for="nameField" class="col-4 col-xs-6">তারিখঃ </label>
+                                    <div class="input-group clockpicker col-6 col-xs-6">
+                                        <input ngbDatepicker class="form-control" placeholder="yyyy-mm-dd" #d="ngbDatepicker"
+                                       
+                                           [(ngModel)]="dates" name="date"   [ngModelOptions]="{standalone: true}">
+                                        <div class="input-group-append" (click)="d.toggle()">
+                                            <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                            </div> -->
+                      
+                           
+                          
+
+
+<!--                      
+                            <div class="col-12">
+                                <div class="form-group row">
+                                    <label for="nameField" class="col-4 col-xs-6">সর্বমোট </label>
+                                    <div class="col-2 col-xs-6">
+                                        <label for="nameField" class="col-xs-2">{{total}}<label class="ml-1">টাকা</label> </label>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            
+                            <div class="col-12">
+                                <div class="form-group row">
+                                    <label for="nameField" class="col-4 col-xs-6">সর্বমোট </label>
+                                    <div class="col-4 col-xs-6">
+                                        <label for="nameField" class="col-xs-2">{{total}}<label
+                                                class="ml-1">টাকা</label> </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group row">
+                                    <label for="nameField" class="col-md-4">ছাড় </label>
+                                    <div class="col-md-4 pl-2">
+                                        <input type="text" class="form-control" (keyup)="test()" [(ngModel)]="char"
+                                            [ngModelOptions]="{standalone: true}">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group row">
+                                    <label for="nameField" class="col-md-4">নগদ </label>
+                                    <div class="col-md-4 pl-2">
+                                        <input type="text" class="form-control" (keyup)="test()" [(ngModel)]="nogod"
+                                            [ngModelOptions]="{standalone: true}">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-12">
+                                <div class="form-group row">
+                                    <label for="nameField" class="col-4 col-xs-6">বাকি </label>
+                                    <div class="col-2 col-xs-6">
+                                        <label for="nameField" class="col-xs-2">{{baki}}<label class="ml-1">টাকা</label></label>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="col-12">
+                                <div class="form-group row">
+                                    <label for="nameField" class="col-4 col-xs-6">বাকি </label>
+                                    <div class="col-4">
+                                        <label for="nameField">{{baki}}<label class="ml-1">টাকা</label>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <ngb-alert type="danger" *ngIf="error" [dismissible]="false">সকল পণ্যের নাম ও পরিমান দিন
+                            </ngb-alert>
+
+
+                            <div class="col-12" style="display: none;">
+                                <div class="form-group row">
+                                    <label for="businessType" class="col-4 col-xs-6">সরবারহকারী </label>
+                                    <div class="col-md-4 pl-2">                                       
+                                        <select class="form-control" id="businessType" [(ngModel)]="businessType"
+                                            (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}">
+                                            <option value="0">নির্বাচন করুন:</option>
+                                            <option *ngFor="let business of businesslist" [ngValue]="business.Id">
+                                                {{business.SupplierName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-12">
+
+                                <div class="form-group row">
+                                    <label for="businessType" class="col-md-4 col-sm-6">সরবারহকারী</label>
+                                    <div class="col-md-4 col-sm-12">
+                                            <mat-form-field class="example-full-width">
+                                                <mat-label>নির্বাচন করুন</mat-label>
+                                                <input type="text"
+                                                       placeholder="নির্বাচন করুন"
+                                                       aria-label="Number"
+                                                       matInput
+                                                       [(ngModel)]="editModel"
+                                                       (keydown)="$event.stopPropagation()"
+                                                       [formControl]="myControl"
+                                                       [matAutocomplete]="auto">
+                                                <mat-autocomplete #auto="matAutocomplete">
+                                                  <mat-option *ngFor="let option of filteredOptions | async" 
+                                                  [value]="option.SupplierName"                                                
+                                                    (onSelectionChange)="setVariable(option.Id)">
+                                                    {{option.SupplierName}}
+                                                  </mat-option>
+                                                </mat-autocomplete>
+                                              </mat-form-field>
+                                        </div>
+                                        
+
+                                </div>                   
+
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="col-12">
+
+
+                            </div>
+
+                            <div class="col-12" *ngIf="other">
+                                <div class="form-group row">
+                                    <label for="nameField" class="col-4 col-xs-6">পূর্বের বাকি </label>
+                                    <div class="col-2 col-xs-6">
+                                        <label for="nameField" class="col-xs-2">{{previousBaki}}<label class="ml-1">টাকা</label></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12" *ngIf="other" style="display: none;">
+                                <div class="form-group row">
+                                    <label for="nameField" class="col-4 col-xs-6">SMS ব্যালান্স </label>
+                                    <div class="col-2 col-xs-6">
+                                        <label for="nameField" class="col-xs-2">{{smsBalance}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12" *ngIf="other"  style="display: none;">
+                                <div class="form-group row">
+                                    <label for="nameField" class="col-4 col-xs-6">SMS পাঠাতে চান</label>
+                                    <div class="col-2 col-xs-6">
+                                   <input
+                                            type="checkbox"
+                                            [(ngModel)]="sendSms"
+                                            [ngModelOptions]="{standalone: true}"/> 
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="form-group mb-0">
+                            <div class="text-center">
+                                <button class="text-center" type="submit" class="btn btn-success" style="background-color: #a40b17;">{{btnName}}</button>
+
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    <!-- Modal -->
+
+
+</div>
+
+
+
+
+<ng-template #centerDataModal let-modal>
+    <div class="modal-header">
+      <!-- <h5 class="modal-title" style="display: inline-table;">Center modal</h5> -->
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-hidden="true">×</button>
+    </div>
+    <div class="modal-body" id="print-section">
+
+        <div style="font-family: SolaimanLipi; text-align: center">
+            <p>
+                <span style="color:Black;font-size:14px;font-weight:normal;">{{modelHeader}}</span><br/>
+                <span style="color:Black;font-size:12px;">তারিখঃ {{ddn |date : 'yyyy-MM-dd'}}</span><br/>
+                <span style="color:Black;font-size:11px;font-weight:bold;">দোকানের নাম: {{shopName}}</span><br/>
+                <span style="color:Black;font-size:11px;">দোকানের মোবাইল নঃ {{shopNumber}}</span><br/>
+                <span style="color:Black;font-size:11px;">দোকানের ঠিকানা :{{shopAddress}}</span><br/>
+            </p>            
+       
+        </div>
+
+
+        <hr>
+
+        <div style="font-family: SolaimanLipi; text-align: left">
+            <p>
+          
+                <span style="color:Black;font-size:12px;">সরবারহকারী: {{supplierName}}</span><br/>
+                <span style="color:Black;font-size:12px;">মোবাইল নঃ {{supplierMobileNumber}}</span><br/>
+                <span style="color:Black;font-size:12px;">ঠিকানা : {{supplierAddress}}</span><br/>
+                
+            </p>            
+       
+        </div>
+
+
+        <hr>
+
+            <table  style="width:100%;  border-collapse: collapse;;display:table;text-indent:initial;border-spacing:2px;border-color: grey; ">
+                    <thead>
+                        <tr>
+                        <th scope="col" style=" border: 1px solid #dddddd; text-align:center;" >#</th>
+                        <th scope="col" style="width:60%;text-align:center; border: 1px solid #dddddd; text-align:center;">পণ্যের বিবরণ</th>
+                        <th scope="col" style="width:40%; border: 1px solid #dddddd; text-align:center;">টাকার পরিমান</th>                       
+                        </tr>
+                    </thead>
+                <tbody>
+                     <tr *ngFor="let item of listOfItems; index as i">
+                        <td scope="col" style=" border: 1px solid #dddddd; text-align:center;">{{ i+1}}</td>
+                        <td scope="col" style="width:60%;text-align:center; border: 1px solid #dddddd; text-align:center;">{{ item.qty}}</td>
+                        <td scope="col" style="width:40%; border: 1px solid #dddddd; text-align:center;">{{ item.price}} টাকা</td>
+                    </tr>
+                </tbody>
+            </table>
+
+     <div style="font-family: SolaimanLipi; text-align: right">
+            <p>
+          
+                <span style="color:Black;font-size:14px;">সর্বমোট: {{totalNew}}</span><br/>
+                <span style="color:Black;font-size:14px;">ছাড়  :{{charNew}}</span><br/>
+                <span style="color:Black;font-size:14px;">নগদ  :{{nogodNew}}</span><br/>
+                <span style="color:Black;font-size:14px;">বাকি : {{bakiNew}}</span><br/>
+                <span style="color:Black;font-size:14px;">পূর্বের বাকি : {{previousBakiNew}}</span><br/>
+                <span style="color:Black;font-size:14px;">সর্বমোট বাকি : {{previousBakiNew+bakiNew}}</span><br/>
+              
+                
+            </p>            
+       
+        </div>
+    </div> 
+    <div>
+        <div class="text-center">
+        <button class="btn btn-primary" printSectionId="print-section" ngxPrint>প্রিন্ট </button> 
+
+        </div>
+
+    </div>
+    <br/>
+  </ng-template>

@@ -1,0 +1,72 @@
+
+<div class="container-fluid">
+    <app-pagetitle  [breadcrumbItems]="breadCrumbItems" style="display: none;"></app-pagetitle>
+    <div style="text-align: left;">
+      <a routerLink="/">
+
+            <i class="fas fa-home" style="font-size: x-large;"></i>    
+      </a>        
+
+   </div>
+    <h4 class="text-center">বাকি বিক্রয় ব্যবস্থাপনা </h4>
+  
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">   
+  
+          
+              <div>
+                <mat-form-field>
+                  <input matInput placeholder="অনুসন্ধান করুন " (keyup)="applyFilter($event.target.value)">
+                </mat-form-field>
+              </div>
+              
+              <div>
+                <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
+              </div>
+              <div class="table-responsive table-striped">
+              <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                
+                <!-- <ng-container matColumnDef="Id">
+                  <th  class="w-th w-td" mat-header-cell *matHeaderCellDef> ডিলিট  </th>
+                  <td mat-cell *matCellDef="let element" (click)="Editdelete(element.Id,-1)">
+                    <i class="ri-delete-bin-line"></i>                  
+                </ng-container> -->
+  
+                <ng-container matColumnDef="BuyerName">
+                  <th  class="w-th w-td" mat-header-cell *matHeaderCellDef> ক্রেতার   তথ্য   </th>
+                  <td mat-cell *matCellDef="let element">
+                                 {{element.BuyerName}} <br/>
+                                 {{element.MobileNumber}}<br/>
+                                 {{element.Address}}
+                </ng-container>
+  
+                  <ng-container matColumnDef="Status">
+                  <th  class="w-th w-td" mat-header-cell *matHeaderCellDef>   </th>
+                  <td mat-cell *matCellDef="let element" (click)="Editdelete(element.SupplierId,element.SupplierId)">
+                   <button class="btn btn-primary">বিস্তারিত </button> 
+                  </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="{{column.name}}" *ngFor="let column of definedColumns">
+                  <th  class="w-th w-td" mat-header-cell *matHeaderCellDef mat-sort-header> {{column.bn}} </th>
+                  <td mat-cell *matCellDef="let element"> 
+                    <!-- {{element[column.name]  | date:'yyyy-MM-dd'}}  -->
+                    {{column.name === 'EntryDate' ? (element[column.name] | date:'dd/MM/yyyy') : element[column.name] }}
+                  </td>
+                </ng-container>
+  
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
+                <tr mat-row *matRowDef="let row; let i = dataIndex; columns: displayedColumns"  [ngClass]="{'alt-row': i % 2}"></tr>
+  
+  
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
