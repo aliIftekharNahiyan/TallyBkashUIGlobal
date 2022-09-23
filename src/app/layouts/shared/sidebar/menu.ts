@@ -35,24 +35,24 @@ export const MENU: MenuItem[] = [
 
 {
     id: 101,
-    label: 'সরবরাহকারী',
+    label: 'সাপ্লাইয়ার',
     icon: 'ri-store-2-line',
     subItems: [
         {
             id: 1001,
-            label: 'সরবরাহকারী তৈরি করুন',
+            label: 'সাপ্লাইয়ার তৈরি করুন',
             link: '/supplier/supplier',
             parentId: 101
         },
         {
             id: 1002,
-            label: 'সকল সরবরাহকারী তথ্য ',
+            label: 'সকল সাপ্লাইয়ার তথ্য ',
             link: '/supplier/supplierList',
             parentId: 101
         },
         {
             id: 1003,
-            label: 'সরবরাহকারী তথ্য রিস্টোর করুন ',
+            label: 'সাপ্লাইয়ার তথ্য রিস্টোর করুন ',
             link: '/supplier/supplierDeletedList',
             parentId: 101
         },
@@ -94,7 +94,7 @@ export const MENU: MenuItem[] = [
 
 {
     id: 103,
-    label: 'ক্রয় ব্যবস্থাপনা ',
+    label: 'ক্রয় ম্যানেজমেন্ট ',
     icon: 'ri-artboard-2-line',
     subItems: [
         {
@@ -140,7 +140,7 @@ export const MENU: MenuItem[] = [
 
 {
     id: 103,
-    label: 'বিক্রয় ব্যবস্থাপনা ',
+    label: 'বিক্রয় ম্যানেজমেন্ট ',
     icon: 'ri-artboard-2-line',
     subItems: [
        

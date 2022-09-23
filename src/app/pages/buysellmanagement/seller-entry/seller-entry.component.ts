@@ -3,7 +3,7 @@ import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@ang
 import { ApigenericService } from '../../../core/services/apigeneric.service'
 import { BuyerModelResults, RequestObject } from '../buyermodel';
 import Swal from 'sweetalert2';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDate, NgbCalendar, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import{map,startWith}from 'rxjs/operators';
 import {Observable} from 'rxjs';
@@ -58,7 +58,9 @@ export class SellerEntryComponent implements OnInit {
   supplierAddress:any;
   listOfItems:any;
   ll:any;
-  constructor(private fb: FormBuilder, private apiservice: ApigenericService, private cdRef: ChangeDetectorRef, private route: ActivatedRoute,private modalService: NgbModal) {
+  errorMsg:string="";
+
+  constructor(private fb: FormBuilder, private apiservice: ApigenericService, private router: Router, private cdRef: ChangeDetectorRef, private route: ActivatedRoute,private modalService: NgbModal) {
 
 
     this.productForm = this.fb.group({
@@ -276,13 +278,26 @@ export class SellerEntryComponent implements OnInit {
   onSubmit() {
 
     this.submitted = true;
-    if ((this.productForm.invalid) || (this.businessType === 0)) {
+    if ((this.productForm.invalid)) {
 
-      this.businessType = 0;
-      this.error = "error";
-      this.other = false;
-      this.sendSms = false;
+      // this.businessType = 0;
+      // this.error = "error";
+      // this.other = false;
+      // this.sendSms = false;
+      this.error = "সকল পণ্যের নাম ও পরিমান দিন";
+      this.errorMsg = "সকল পণ্যের নাম ও পরিমান দিন";
+    
+     this.other = false;
+     this.sendSms = false;
+
       return;
+    }else if( (this.businessType === 0)){
+      this.error = "সকল পণ্যের নাম ও পরিমান দিন";
+      this.errorMsg = "ক্রেতা দিন";
+     // this.errorMsg += "yyyyyyy";
+     this.other = false;
+     this.sendSms = false;
+     return;
     }
 
     this.titleText();
@@ -292,6 +307,9 @@ export class SellerEntryComponent implements OnInit {
 
   }
 
+  redirectSupplier(){
+    this.router.navigate(['/buyer/buyer']);
+  }
   postRequest() {
 
 

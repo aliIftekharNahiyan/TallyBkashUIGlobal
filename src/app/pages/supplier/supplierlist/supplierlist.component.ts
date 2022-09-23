@@ -17,7 +17,7 @@ export class SupplierlistComponent implements OnInit {
 
   displayedColumns: string[] = ['EntryDate','SupplierName', 'HisabStartAmount', 'MobileNumber', 'SupplierId','Status','Id'];
   definedColumns:any[]= [
-    {name: 'SupplierName', bn: 'সরবরাহকারীর নাম'},
+    {name: 'SupplierName', bn: 'সাপ্লাইয়ারর নাম'},
     {name: 'HisabStartAmount', bn: 'হিসাব শুরুর টাকা'},
     {name: 'MobileNumber', bn: 'মোবাইল নাম্বার'},
     {name: 'Address', bn: 'ঠিকানা'},
@@ -43,7 +43,7 @@ export class SupplierlistComponent implements OnInit {
 
   ngOnInit() {
     
-  this.breadCrumbItems = [{ label: 'সরবরাহকারী' }, { label: 'সকল সরবরাহকারী তথ্য ', active: true }];
+  this.breadCrumbItems = [{ label: 'সাপ্লাইয়ার' }, { label: 'সকল সাপ্লাইয়ার তথ্য ', active: true }];
 
   this.dataSource = new MatTableDataSource(); 
   this.getTableData(); 

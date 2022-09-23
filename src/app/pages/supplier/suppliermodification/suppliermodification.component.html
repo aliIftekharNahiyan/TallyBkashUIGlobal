@@ -3,11 +3,11 @@
     <div style="text-align: left;">
         <a routerLink="/">
     
-              <i class="fas fa-home" style="font-size: x-large;"></i>    
+              <i class="fas fa-home" style="font-size: x-large;color: #a40b17;"></i>     
         </a>        
     
      </div>
-    <h4 class="text-center">সরবরাহকারী তৈরি করুন</h4>
+    <h4 class="text-center">সাপ্লাইয়ার তৈরি করুন</h4>
    
 
     <div class="row">
@@ -40,24 +40,24 @@
 
 
                         <div class="form-group">
-                            <label>সরবরাহকারীর নামঃ</label>
+                            <label>সাপ্লাইয়ারর নামঃ</label>
                             <input type="text" class="form-control" formControlName="supplierName"
                                 [ngClass]="{ 'is-invalid': submitted && f.supplierName.errors }" name="supplierName"
-                                placeholder="সরবরাহকারীর নাম লিখুন" id="supplierName" [(ngModel)]="supplierName" />
+                                placeholder="সাপ্লাইয়ারর নাম লিখুন" id="supplierName" [(ngModel)]="supplierName" />
 
                             <div *ngIf="submitted && f.supplierName.errors" class="invalid-feedback">
-                                <div *ngIf="f.supplierName.errors.required">সরবরাহকারীর নাম লিখুন</div>
+                                <div *ngIf="f.supplierName.errors.required">সাপ্লাইয়ারর নাম লিখুন</div>
                               </div>
 
                         </div>
 
                         <div class="form-group">
-                            <label>হিসাব শুরুর টাকাঃ</label>
+                            <label>পূর্বের বাকি টাকা</label>
                             <input type="text" class="form-control" formControlName="hisabStartAmount"
                                 [ngClass]="{ 'is-invalid': submitted && f.hisabStartAmount.errors }"
-                                placeholder="হিসাব শুরুর টাকা লিখুন" id="hisabStartAmount" [(ngModel)]="hisabStartAmount" />
+                                placeholder="পূর্বের বাকি টাকা লিখুন" id="hisabStartAmount" [(ngModel)]="hisabStartAmount" />
                             <div *ngIf="submitted && f.hisabStartAmount.errors" class="invalid-feedback">
-                                <div *ngIf="f.hisabStartAmount.errors.required">হিসাব শুরুর টাকা লিখুন</div>
+                                <div *ngIf="f.hisabStartAmount.errors.required">পূর্বের বাকি টাকা লিখুন</div>
                             </div>
                         </div>
 

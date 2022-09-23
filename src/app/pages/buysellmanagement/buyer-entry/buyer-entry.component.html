@@ -3,7 +3,7 @@
     <div style="text-align: left;">
         <a routerLink="/">
 
-              <i class="fas fa-home" style="font-size: x-large;"></i>    
+              <i class="fas fa-home" style="font-size: x-large;color: #a40b17;"></i>     
         </a>        
 
      </div>
@@ -30,7 +30,8 @@
 
 
 
-                    <h5>একের অধিক পণ্য যোগ করতে + আইকনটিতে ক্লিক করুন</h5>
+                    <h5>অধিক পণ্য যোগ করতে    <button type="button" style="background-color: #a40b17;" (click)="addQuantity()" class="btn btn-primary"> <i
+                        class="mdi mdi-account-plus" style="font-size: x-large;"></i> </button>  ক্লিক করুন</h5>
                     <br/> 
                     
                     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
@@ -72,7 +73,7 @@
                                     </td>
                                     <td class="td">
                                         <button (click)="removeQuantity(i)" class="btn btn-danger"
-                                            style="margin-top: 2%;"><i class="mdi mdi-close-thick"
+                                            style="margin-top: 2%;background-color: #a40b17;"><i class="mdi mdi-close-thick"
                                                 style="font-size: large;"></i> </button>
 
                                     </td>
@@ -180,7 +181,7 @@
                                 </div>
                             </div>
                            
-                            <ngb-alert type="danger" *ngIf="error" [dismissible]="false">সকল পণ্যের নাম ও পরিমান দিন
+                            <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{errorMsg}}
                             </ngb-alert>
 
 
@@ -202,8 +203,8 @@
                             <div class="col-12">
 
                                 <div class="form-group row">
-                                    <label for="businessType" class="col-md-4 col-sm-6">সরবারহকারী</label>
-                                    <div class="col-md-4 col-sm-12">
+                                    <label for="businessType" class="col-md-2 col-sm-4">সাপ্লাইয়ার</label>
+                                    <div class="col-md-2 col-sm-6">
                                             <mat-form-field class="example-full-width">
                                                 <mat-label>নির্বাচন করুন</mat-label>
                                                 <input type="text"
@@ -222,6 +223,9 @@
                                                   </mat-option>
                                                 </mat-autocomplete>
                                               </mat-form-field>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2" style="display: none;">
+                                            <button class="text-center" (click)="redirectSupplier()" class="btn btn-success" style="background-color: #a40b17;">সাপ্লাইয়ার তৈরী করুন </button>
                                         </div>
                                         
 
@@ -282,10 +286,15 @@
 
 
                         </div>
+                        <br/>
                         <div class="form-group mb-0">
                             <div class="text-center">
-                                <button class="text-center" type="submit" class="btn btn-success" style="background-color: #a40b17;">{{btnName}}</button>
+                                <button class="text-center" type="submit" class="btn btn-success" style="background-color: #a40b17;min-width: 160px;">{{btnName}}</button>
+                                <button class="text-center" (click)="redirectSupplier()" class="btn btn-success mt-5" style="background-color: #a40b17;min-width: 160px;;">সাপ্লাইয়ার তৈরী করুন </button>
 
+                            </div>
+                            <br>
+                            <div class="text-center">
                             </div>
                         </div>
 

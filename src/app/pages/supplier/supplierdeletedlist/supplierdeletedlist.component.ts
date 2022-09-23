@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 export class SupplierdeletedlistComponent implements OnInit {
   displayedColumns: string[] = ['EntryDate', 'SupplierName', 'HisabStartAmount', 'MobileNumber', 'SupplierId', 'Status', 'Id'];
   definedColumns: any[] = [
-    { name: 'SupplierName', bn: 'সরবরাহকারীর নাম' },
+    { name: 'SupplierName', bn: 'সাপ্লাইয়ারর নাম' },
     { name: 'HisabStartAmount', bn: 'হিসাব শুরুর টাকা' },
     { name: 'MobileNumber', bn: 'মোবাইল নাম্বার' },
     { name: 'Address', bn: 'ঠিকানা' },
@@ -39,7 +39,7 @@ export class SupplierdeletedlistComponent implements OnInit {
   constructor(private router: Router, private apiservice: ApigenericService) { }
 
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'সরবরাহকারী' }, { label: 'তথ্য রিস্টোর করুন ', active: true }];
+    this.breadCrumbItems = [{ label: 'সাপ্লাইয়ার' }, { label: 'তথ্য রিস্টোর করুন ', active: true }];
 
     this.dataSource = new MatTableDataSource();
     this.getTableData();

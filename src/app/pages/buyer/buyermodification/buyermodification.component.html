@@ -4,7 +4,7 @@
     <div style="text-align: left;">
         <a routerLink="/">
     
-              <i class="fas fa-home" style="font-size: x-large;"></i>    
+              <i class="fas fa-home" style="font-size: x-large;color: #a40b17;"></i>     
         </a>        
     
      </div>
@@ -53,12 +53,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label>হিসাব শুরুর টাকাঃ</label>
+                            <label>পূর্বের বাকি টাকা</label>
                             <input type="text" class="form-control" formControlName="hisabStartAmount"
                                 [ngClass]="{ 'is-invalid': submitted && f.hisabStartAmount.errors }"
-                                placeholder="হিসাব শুরুর টাকা লিখুন" id="hisabStartAmount" [(ngModel)]="hisabStartAmount" />
+                                placeholder="পূর্বের বাকি টাকা লিখুন" id="hisabStartAmount" [(ngModel)]="hisabStartAmount" />
                             <div *ngIf="submitted && f.hisabStartAmount.errors" class="invalid-feedback">
-                                <div *ngIf="f.hisabStartAmount.errors.required">হিসাব শুরুর টাকা লিখুন</div>
+                                <div *ngIf="f.hisabStartAmount.errors.required">পূর্বের বাকি টাকা লিখুন</div>
                             </div>
                         </div>
 

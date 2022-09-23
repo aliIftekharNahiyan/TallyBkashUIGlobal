@@ -3,7 +3,7 @@ import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@ang
 import { ApigenericService } from '../../../core/services/apigeneric.service'
 import { BuyerModelResults, RequestObject } from '../buyermodel';
 import Swal from 'sweetalert2';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import{map,startWith}from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
@@ -62,9 +62,9 @@ export class BuyerEntryComponent implements OnInit {
   supplierAddress:any;
   listOfItems:any;
   editModel:string="";
+  errorMsg:string="";
 
-
-  constructor(private fb: FormBuilder, private apiservice: ApigenericService, private cdRef: ChangeDetectorRef, private route: ActivatedRoute,private modalService: NgbModal) {
+  constructor(private fb: FormBuilder, private apiservice: ApigenericService, private router: Router, private cdRef: ChangeDetectorRef, private route: ActivatedRoute,private modalService: NgbModal) {
 
 
     this.productForm = this.fb.group({
@@ -310,13 +310,37 @@ export class BuyerEntryComponent implements OnInit {
   onSubmit() {
 
     this.submitted = true;
-    if ((this.productForm.invalid) || (this.businessType === 0)) {
+    if ((this.productForm.invalid)) {
 
-      this.businessType = 0;
-      this.error = "error";
+      //this.businessType = 0;
+      this.error = "সকল পণ্যের নাম ও পরিমান দিন";
+       this.errorMsg = "সকল পণ্যের নাম ও পরিমান দিন";
+      // this.errorMsg += "yyyyyyy";
       this.other = false;
       this.sendSms = false;
+
+      // console.log(Array(this.productForm.value.quantities).length);//
+      // console.log(Array(this.productForm.value.quantities).length);//
+      // console.log(this.productForm.value.quantities.length);//
+      // // if(this.productForm.value.quantities.length==1 && this.productForm.value.quantities[0].qty ==''){
+      // //   this.errorMsg += "zzzzzzzzzzzzzzzz";
+      // }
+      // console.log(this.productForm.value.quantities)
+      // this.productForm.value.quantities.forEach(function(value){
+      //   // if(value.qty == '' ){
+      //   //   this.errorMsg = "সকল পণ্যের নাম ও পরিমান দিন";         
+      //   // }
+      //   console.log(value)
+      // });
+      console.log(this.businessType);
       return;
+    }else if( (this.businessType === 0)){
+      this.error = "সকল পণ্যের নাম ও পরিমান দিন";
+      this.errorMsg = "সাপ্লাইয়ার দিন";
+     // this.errorMsg += "yyyyyyy";
+     this.other = false;
+     this.sendSms = false;
+     return;
     }
 
     this.titleText();
@@ -326,6 +350,9 @@ export class BuyerEntryComponent implements OnInit {
 
   }
 
+  redirectSupplier(){
+    this.router.navigate(['/supplier/supplier']);
+  }
   postRequest() {
 
 

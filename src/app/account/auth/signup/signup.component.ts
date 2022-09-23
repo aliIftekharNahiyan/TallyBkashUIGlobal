@@ -5,6 +5,8 @@ import { AuthenticationService } from '../../../core/services/auth.service';
 import { UserProfileService } from '../../../core/services/user.service';
 import { ApigenericService } from '../../../core/services/apigeneric.service'
 import { SignUpdata, Result } from 'src/app/core/models/auth.models';
+
+
 import Swal from 'sweetalert2';
 
 @Component({

@@ -66,8 +66,8 @@ export class SuppliermodificationComponent implements OnInit {
 
     let dd = new Date();   
     this.dates =  new NgbDate(dd.getFullYear(),dd.getMonth()+1,dd.getDate());  
-    // this.breadCrumbItems = [{ label: 'সরবরাহকারী তৈরি করুন' }, { label: 'Form Elements', active: true }];
-    this.breadCrumbItems = [{ label: 'সরবরাহকারী' }, { label: 'সরবরাহকারী তৈরি করুন', active: true }];
+    // this.breadCrumbItems = [{ label: 'সাপ্লাইয়ার তৈরি করুন' }, { label: 'Form Elements', active: true }];
+    this.breadCrumbItems = [{ label: 'সাপ্লাইয়ার' }, { label: 'সাপ্লাইয়ার তৈরি করুন', active: true }];
     bsCustomFileInput.init();
 
 
