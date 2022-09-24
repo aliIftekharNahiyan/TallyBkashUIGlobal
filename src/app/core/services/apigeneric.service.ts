@@ -11,8 +11,8 @@ export class ApigenericService {
   //baseurl ="http://localhost:53627//api/";
 
   //baseurl ="http://bkashtalyapi.talymanager.com/api/";
-  baseurl ="https://tmapi.griho.app/api/"; //
-  //baseurl ="http://localhost:10277/api/"; //localhost:10277
+ baseurl ="https://tmapi.griho.app/api/"; //
+ // baseurl ="http://localhost:10277/api/"; //localhost:10277
    
    //Login
    loginApi=this.baseurl+"Login/Login";
